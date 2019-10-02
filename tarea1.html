@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tarea 1</title>
+		<style>
+			input[type=text], select{
+				width: 10%;
+				border: 2px solid white;
+				border-radius: 4px;
+				background-color:#171717;
+				color:white;
+			}
+			body, option, select{background-color:#171717; text-align:center; font-family:verdana; color:white}
+		</style>
+    </head>
+    <body >
+		<h1> CALCULADORA DE DOS OPERANDOS:</h1>
+        Operador lado izquierdo:<br>
+        <input type="text" id="izq">
+        
+        <br>
+        Operador:<br>
+        <select id="ope">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <br>
+        Operador lado derecho: <br>
+        <input type="text" id="dch">
+        <br>
+		Intento usuario: <br>
+		<input type="text" id="try">
+		<br><br>
+        <input type="button" value="Let's check it!" onclick="acertarResultado()">
+        <input type="button" value="Reset" onclick="vaciar()">
+		<p id="solucion"></p>
+		<script>
+			function acertarResultado() {
+				var x = parseInt(document.getElementById("izq").value);
+				var y = parseInt(document.getElementById("dch").value);
+				var opcion = document.getElementById("ope");
+				var o = opcion.options[opcion.selectedIndex].value;
+				if(o == "+"){
+					var resultado = x + y;
+				}else if(o=="-"){
+					var resultado = x-y;
+				}else if(o=="*"){
+					var resultado = x*y;
+				}else{
+					var resultado = x/y;
+				}
+				var intento = document.getElementById("try").value;
+				if(isNaN(x) || isNaN(y)|| !intento){
+				    document.getElementById("solucion").innerHTML = "<p style='border-color:white; background-color:white;display:inline;float:center;color:#171717'>¿?</p>"
+				}
+				else if(intento == resultado){
+					document.getElementById("solucion").innerHTML = "Resultado real: " + resultado + "<br> Intento usuario: " + intento + "<br><p style='border-color:lime; background-color:lime;display:inline;float:center;color:#171717'>¡¡CORRECTO!!</p>";
+				}else{
+					document.getElementById("solucion").innerHTML = "Resultado real: " + resultado + "<br> Intento usuario: " + intento + "<br><p style='border-color: red; background-color:red;display:inline;float:center;color:#171717'>¡¡INCORRECTO!!</p>";
+				}
+			}
+			
+			function vaciar(){
+				document.getElementById("izq").value = "";
+				document.getElementById("dch").value = "";
+				document.getElementById("ope").value = "+";
+				document.getElementById("try").value = "";
+				document.getElementById("solucion").innerHTML="";
+			}
+		</script>
+		
+
+		</body>
+</html>

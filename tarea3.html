@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tarea 2</title>
+		<style>
+			input[type=text], select{
+				width: 10%;
+				border: 2px solid white;
+				border-radius: 4px;
+				background-color: #171717;
+				color: white;
+			}
+			body, option, select{
+				background-color: #171717;
+				text-align: center;
+				font-family: Verdana,Geneva,sans-serif;
+				color: white;
+			}
+		</style>
+    </head>
+    <body >
+		<h1> OPERACIONES CON MATH JS:</h1>
+        Cadena de operaciones:<br>
+        <input type="text" id="cadena">
+        <br>
+		Intento usuario: <br>
+		<input type="text" id="try">
+		<br><br>
+        <input type="button" id="reset" value="Reset">
+		<p id="solucion"></p>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.1/math.min.js"></script>
+		<script>
+			$(function(){
+				$('#try').keyup(function () {
+					var cadena = $('#cadena').val();
+					var intento = parseInt($('#try').val());
+					var resultado = math.format(math.evaluate($('#cadena').val()),14);		
+
+					if(isNaN($('#try').val())||!$('#try').val()||!$('#cadena').val()){
+						$("#solucion").html("<p style='border-color: white; background-color: white;display:inline;float:center;color:#171717'>¿?</p>");
+					}else{
+						if(intento == resultado){
+							$("#solucion").html("Resultado real: " + resultado + "<br> Intento usuario: " + intento + "<br><p style='border-color:lime; background-color:lime;display:inline;float:center;color:#171717'>¡¡CORRECTO!!</p>");
+						}else{
+							$("#solucion").html("Resultado real: " + resultado + "<br> Intento usuario: " + intento + "<br><p style='border-color: red; background-color:red;display:inline;float:center;color:#171717'>¡¡INCORRECTO!!</p>");
+						}
+					}
+				});
+			});
+			
+			$(document).ready(function() {
+				$("#reset").click(function(){
+					$("#cadena").val("");
+					$("#try").val("");
+					$("#solucion").html("<p style='border-color: white; background-color: white;display:inline;float:center;color:#171717'>¿?</p>");
+				});
+			});
+		</script>
+		
+
+		</body>
+</html>
+
+
+
+
+					

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tarea 2</title>
+		<style>
+			input[type=text], select{
+				width: 10%;
+				border: 2px solid white;
+				border-radius: 4px;
+				background-color: #171717;
+				color: white;
+			}
+			body, option, select{
+				background-color: #171717;
+				text-align: center;
+				font-family: Verdana,Geneva,sans-serif;
+				color: white;
+			}
+		</style>
+    </head>
+    <body >
+		<h1> CALCULADORA DE DOS OPERANDOS CON JQUERY:</h1>
+        Operador lado izquierdo:<br>
+        <input type="text" id="izq">
+        
+        <br>
+        Operador:<br>
+        <select id="ope">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <br>
+        Operador lado derecho: <br>
+        <input type="text" id="dch">
+        <br>
+		Intento usuario: <br>
+		<input type="text" id="try">
+		<br><br>
+        <input type="button" id="reset" value="Reset">
+		<p id="solucion"></p>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script>
+			$(function(){
+				$('#try').keyup(function () {
+					var intento = parseInt($('#try').val());
+					var x=parseInt($('#izq').val());
+					var o=$("#ope").val();
+					var y=parseInt($('#dch').val());
+					var resultado ="";
+					if(o == "+"){
+						resultado = x + y;
+					}else if(o=="-"){
+						resultado = x-y;
+					}else if(o=="*"){
+						resultado = x*y;
+					}else{
+						resultado = x/y;
+					}
+
+					if(isNaN($('#try').val())||!$('#try').val()||!$('#izq').val()||!$('#dch').val()){
+						$("#solucion").html("<p style='border-color: white; background-color: white;display:inline;float:center;color:#171717'>¿?</p>");
+					}else{ 	
+						if(intento == resultado){
+							$("#solucion").html("Resultado real: " + resultado + "<br> Intento usuario: " + intento + "<br><p style='border-color:lime; background-color:lime;display:inline;float:center;color:#171717'>¡¡CORRECTO!!</p>");
+						}else{
+							$("#solucion").html("Resultado real: " + resultado + "<br> Intento usuario: " + intento + "<br><p style='border-color: red; background-color:red;display:inline;float:center;color:#171717'>¡¡INCORRECTO!!</p>");
+						}
+					}
+				});
+			});
+			
+			$(document).ready(function() {
+				$("#reset").click(function(){
+					$("#izq").val("");
+					$("#dch").val("");
+					$("#ope").val("+");
+					$("#try").val("");
+					$("#solucion").html("<p style='border-color: white; background-color: white;display:inline;float:center;color:#171717'>¿?</p>");
+				});
+			});
+		</script>
+		
+
+		</body>
+</html>
